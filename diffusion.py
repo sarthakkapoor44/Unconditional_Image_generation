@@ -30,7 +30,7 @@ def get_loss(model, x_0, t):
 
 
 
-timesteps= 300
+timesteps= 600
 betas = linear_beta_schedule(timesteps=timesteps)
 alphas = 1. - betas
 alphas_cumprod = torch.cumprod(alphas, axis=0)

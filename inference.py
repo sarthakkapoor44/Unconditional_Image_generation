@@ -38,8 +38,8 @@ def p_sample_loop(model, shape):
     img = torch.randn(shape, device=device)
     imgs = []
 
-    for i in tqdm(reversed(range(0, timesteps)), desc='sampling loop time step', total=1):
-        img = p_sample(model, img, torch.full((b,), i, device=device, dtype=torch.long), 3)
+    for i in tqdm(reversed(range(0, timesteps)), desc='sampling loop time step', total=timesteps):
+        img = p_sample(model, img, torch.full((b,), i, device=device, dtype=torch.long), i)
         imgs.append(img.cpu().numpy())
     return imgs
 

@@ -21,12 +21,20 @@ elif option == 'Model with Attention':
     st.write("Model with Attention is initialized.")
 
 model.to(device)
+
+# Use smaller batch size for CPU, larger for GPU
+batch_size = 16 if device.type == 'cuda' else 8
+num_images_to_show = batch_size
+
 if (st.button("Click to generate image")):
-    samples = sample(model, image_size=img_size, batch_size=64, channels=3)
-    num_columns = 5
-    for i in range(0, 60, num_columns):
+    with st.spinner(f'Generating {batch_size} images (this may take 3-5 minutes on CPU)...'):
+        samples = sample(model, image_size=img_size, batch_size=batch_size, channels=3)
+    
+    st.success(f'Generated {batch_size} images!')
+    num_columns = 4
+    for i in range(0, num_images_to_show, num_columns):
         cols = st.columns(num_columns)
-        for col, img_idx in zip(cols, range(i, i + num_columns)):
+        for col, img_idx in zip(cols, range(i, min(i + num_columns, num_images_to_show))):
             reverse_transforms = transforms.Compose([
                 transforms.Lambda(lambda t: (t + 1) / 2),
                 transforms.Lambda(lambda t: t.permute(1, 2, 0)),
