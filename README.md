@@ -113,6 +113,9 @@ The app will open in your browser at `http://localhost:8501`
 
 ![Diffusion Model Interface](https://github.com/himanshu-skid19/Unconditional-Image-Generation-Using-a-Diffusion-model/assets/114365148/8a8c2813-8609-40e9-b14b-038326dd76c0)
 
+### Final Result
+![Diffusion Model Output](https://github.com/sarthakkapoor44/Unconditional_Image_generation/blob/master/images/result.jpeg)
+
 ### Performance Expectations
 
 | Hardware                 | Batch Size  | Generation Time | Notes                  |
